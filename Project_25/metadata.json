@@ -1,0 +1,5 @@
+{
+  "name": "AI Event Planner",
+  "description": "An intelligent agent to help you plan and generate ideas for any event. Describe your event and location, and the AI will use live web search to create a detailed plan with real venue suggestions, an agenda, and an AI-generated visual mood board.",
+  "requestFramePermissions": []
+}
