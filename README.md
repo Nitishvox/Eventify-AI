@@ -5,9 +5,8 @@
 [![React](https://img.shields.io/badge/Framework-React-61DAFB?logo=react)](https://reactjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Styling-TailwindCSS-38B2AC?logo=tailwindcss)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Discord](https://img.shields.io/badge/Community-Discord-gray?logo=discord)](https://discord.gg/your-server)
-[![Twitter](https://img.shields.io/badge/Follow-Twitter-1DA1F2?logo=twitter)](https://twitter.com/your-handle)
-[![Hugging Face](https://img.shields.io/badge/Model-HuggingFace-blue?logo=huggingface)](https://huggingface.co/your-model)
+[![Twitter](https://img.shields.io/badge/Follow-Twitter-1DA1F2?logo=twitter)](https://x.com/nitish_vox?t=NLjdTXX8tRlO5M_DBM_vDg&s=09)
+
 
 # AI Event Planner — Architecture & Feature Overview
 
