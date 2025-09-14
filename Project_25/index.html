@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Event Planner</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-dark': '#131316',
+            'brand-gray-900': '#1a1a1f',
+            'brand-gray-800': '#222228',
+            'brand-gray-700': '#36363d',
+            'brand-gray-600': '#4f4f56',
+            'brand-gray-500': '#696970',
+            'brand-gray-300': '#b4b4b9',
+            'brand-gray-200': '#dcdce0',
+            'brand-gray-100': '#f5f5fa',
+            'brand-blue-500': '#3b82f6',
+            'brand-blue-400': '#60a5fa',
+            'brand-blue-300': '#93c5fd',
+            'brand-purple-500': '#8b5cf6',
+            'brand-purple-400': '#a78bfa',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Custom Styles -->
+  <style>
+    /* Custom Animations */
+    @keyframes pulse { 50% { opacity: .5; } }
+    .animate-pulse-slow { animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    .animate-fade-in { animation: fade-in 0.5s ease-in-out forwards; }
+    @keyframes slide-in-up { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .animate-slide-in-up { animation: slide-in-up 0.3s ease-out forwards; }
+    @keyframes fade-in-backdrop { from { background-color: transparent; } to { background-color: rgba(0, 0, 0, 0.6); } }
+    .animate-fade-in-backdrop { animation: fade-in-backdrop 0.3s ease-out forwards; }
+    
+    /* Hide Scrollbars */
+    /* For Webkit-based browsers (Chrome, Safari, Edge) */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    /* For Firefox */
+    * {
+      scrollbar-width: none;
+    }
+
+    /* Styles for Event Genesis Page */
+    @keyframes gradient-flow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .glass-card {
+      background: rgba(17, 24, 39, 0.5); /* bg-gray-900/50 */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Styles for OpsMind AI */
+    :root {
+      --brand-primary: #6366F1;
+      --brand-secondary: #4F46E5;
+    }
+    .bg-brand-primary { background-color: var(--brand-primary); }
+    .bg-brand-secondary { background-color: var(--brand-secondary); }
+    .text-brand-primary { color: var(--brand-primary); }
+    .text-brand-secondary { color: var(--brand-secondary); }
+    .border-brand-primary { border-color: var(--brand-primary); }
+    .hover\:border-brand-primary:hover { border-color: var(--brand-primary); }
+    .hover\:bg-brand-secondary:hover { background-color: var(--brand-secondary); }
+    .focus\:border-brand-primary:focus { border-color: var(--brand-primary); }
+    .focus\:ring-brand-primary:focus { --tw-ring-color: var(--brand-primary); }
+    .bg-brand-primary\/20 { background-color: rgba(99, 102, 241, 0.2); }
+  </style>
+
+  <!-- Import Map -->
+  <script type="importmap">
+  {
+    "imports": {
+      "react": "https://aistudiocdn.com/react@^19.1.1",
+      "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+      "react/": "https://aistudiocdn.com/react@^19.1.1/",
+      "@google/genai": "https://aistudiocdn.com/@google/genai@^1.19.0",
+      "jspdf": "https://aistudiocdn.com/jspdf@^2.5.1",
+      "docx": "https://aistudiocdn.com/docx@^8.5.0",
+      "file-saver": "https://aistudiocdn.com/file-saver@^2.0.5"
+    }
+  }
+  </script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-brand-dark text-brand-gray-100">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
