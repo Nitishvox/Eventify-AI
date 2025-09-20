@@ -95,8 +95,7 @@ export const generateEventPlan = async (
 export const generateMoodBoard = async (theme: string, description: string): Promise<string[]> => {
     const prompt = `A mood board for an event. Theme: "${theme}". Description: "${description}". The image should be vibrant, professional, and visually appealing, capturing the core essence of the event.`;
     
-    // Hardcoded Nebius API Key as requested by the user.
-    const NEBIUS_API_KEY = 'eyJhbGciOiJIUzI1NiIsImtpZCI6IlV6SXJWd1h0dnprLVRvdzlLZWstc0M1akptWXBvX1VaVkxUZlpnMDRlOFUiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJnb29nbGUtb2F1dGgyfDEwNDQxMjk2NTY2ODk2NDgzMDAzNyIsInNjb3BlIjoib3BlbmlkIG9mZmxpbmVfYWNjZXNzIiwiaXNzIjoiYXBpX2tleV9pc3N1ZXIiLCJhdWQiOlsiaHR0cHM6Ly9uZWJpdXMtaW5mZXJlbmNlLmV1LmF1dGgwLmNvbS9hcGkvdjIvIl0sImV4cCI6MTkxNTc2NzM1MywidXVpZCI6IjAxOTk1NjJjLTE2YWEtNzQwYi04ZDA0LWQyZWQxZDY4ZmZhZCIsIm5hbWUiOiJteV9hcGkiLCJleHBpcmVzX2F0IjoiMjAzMC0wOS0xNlQwNTozNTo1MyswMDAwIn0.tiwWb623fV7QVO3wf8Z7_0bIo13O08wzL5BcF5iYl4Y';
+    const NEBIUS_API_KEY = process.env.VITE_NEBIUS_API_KEY!;
 
     // Primary logic: Nebius API
     try {
@@ -164,8 +163,39 @@ export const refineEventPlan = async (eventPlan: EventPlan, request: string): Pr
       ${JSON.stringify(eventPlan, null, 2)}
     `;
 
+    // FIX: The previous empty schema caused an API error. This full schema ensures the AI returns a valid structure.
     const responseSchema = {
-        type: Type.OBJECT, properties: { /* Re-using a simplified schema structure */ }
+        type: Type.OBJECT,
+        properties: {
+            eventName: { type: Type.STRING },
+            eventDate: { type: Type.STRING },
+            theme: { type: Type.STRING },
+            description: { type: Type.STRING },
+            venue: {
+                type: Type.OBJECT,
+                properties: {
+                    name: { type: Type.STRING },
+                    address: { type: Type.STRING },
+                    description: { type: Type.STRING },
+                    website: { type: Type.STRING },
+                },
+                required: ['name', 'address', 'description']
+            },
+            agenda: {
+                type: Type.ARRAY,
+                items: {
+                    type: Type.OBJECT,
+                    properties: {
+                        time: { type: Type.STRING },
+                        title: { type: Type.STRING },
+                        description: { type: Type.STRING },
+                    },
+                    required: ['time', 'title', 'description']
+                }
+            },
+            teamNotes: { type: Type.STRING, description: "Internal notes for the planning team." }
+        },
+        required: ['eventName', 'eventDate', 'theme', 'description', 'venue', 'agenda']
     };
     
     try {
@@ -174,7 +204,7 @@ export const refineEventPlan = async (eventPlan: EventPlan, request: string): Pr
             contents: prompt,
             config: {
                 responseMimeType: 'application/json',
-                responseSchema: { type: Type.OBJECT } // A generic object schema is often enough for refinement
+                responseSchema: responseSchema
             }
         });
         return safelyParseJson<EventPlan>(result.text, 'refineEventPlan');

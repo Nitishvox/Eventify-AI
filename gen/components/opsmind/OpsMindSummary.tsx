@@ -46,7 +46,8 @@ const OpsMindSummary: React.FC<OpsMindSummaryProps> = ({
 
     // Budget Plan
     content += `2. BUDGET ALLOCATION\n`;
-    content += `--------------------\n`;
+    content += `--------------------
+`;
     budgetPlan.forEach(cat => {
         content += `- ${cat.category}: ${currencySymbol}${cat.amount} (${cat.percentage}%)\n`;
         content += `  Trade-offs: ${cat.tradeOffs}\n\n`;

@@ -17,10 +17,13 @@ const VendorSyncEngine: React.FC<VendorSyncEngineProps> = ({ eventDetails, vendo
   };
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {vendors.map((vendor, index) => (
-          <Card key={index} className="flex flex-col animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+          <Card 
+            key={index} 
+            className="flex flex-col animate-fade-in-up" 
+            style={{ animationDelay: `${index * 100}ms` }}
+          >
             <h3 className="text-xl font-semibold text-brand-primary">{vendor.category}</h3>
             
             <div className="flex items-start gap-3 mt-3 pt-3 border-t border-brand-gray-700 flex-grow">
@@ -43,7 +46,6 @@ const VendorSyncEngine: React.FC<VendorSyncEngineProps> = ({ eventDetails, vendo
             </div>
           </Card>
         ))}
-      </div>
     </div>
   );
 };
